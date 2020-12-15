@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    window.onload = function () {
+      const p = new Promise((resolve, reject) => {
+        // // 1、通过resolve改变
+        resolve('like')
+        // // 2、通过reject改变
+        reject('noLike')
+        // 3、直接抛出异常
+        throw ('这个异常了异常了')
+      })
+    
+    p.then(value => {
+      console.log(value);
+    })
+  } 
+  </script>
+</body>
+</html>

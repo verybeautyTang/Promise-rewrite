@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+        const p = new Promise((resolve, reject) => {
+            resolve('ok')
+          })
+          p.then(value => {
+            console.log(value);
+          }).then(() => {
+            console.log('object');
+            return new Promise(() =>{}) // 返回一个pendding状态的promise可以中断链式调用
+          }).then(() => {
+            console.log('like It');
+          }).catch(reason => {
+            console.warn(reason);
+          })
+  </script>
+</body>
+</html>

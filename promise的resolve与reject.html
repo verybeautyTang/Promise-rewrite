@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // resolve规则
+      //1、传入的参数不是promise对象类型，则返回成功的promise对象
+      //2、传入的参数是promise对象类型，则参数的结果决定了返回的结果类型
+    const p = Promise.resolve(111)
+
+    const p1 = Promise.resolve(new Promise((resolve, reject) => {
+      reject('NOTOK')
+    }))
+    console.log(p);
+    console.log(p1);
+    p1.catch(err => {
+      console.log(err);
+    }) 
+    // reject规则
+    // 无论传入的参数是什么类型，都是返回失败的参数结果
+    const p2 = Promise.reject(111)
+    const p3 = Promise.reject(new Promise((resolve, reject) => {
+        reject('NOTOK')
+      }))
+    console.log(p2);
+    console.log(p3);
+  </script>
+</body>
+</html>

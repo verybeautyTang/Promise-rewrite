@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./index.js"></script>
+</head>
+<body>
+  <script>
+    window.onload = function () {
+      let p =  new Promise((resolve, reject) => {
+      // setTimeout(() => {
+        resolve('Yeal')
+      // }, 1000);
+        // throw 'rrr'
+      })
+      console.log(p);
+      p.then(value => {
+        console.log(value);
+      },reason => {
+        console.warn(reason);
+      })
+      p.then(value => {
+        alert(value);
+      },reason => {
+        console.warn(reason);
+      })
+      // .catch(err => {
+      //   console.log(err);
+      // })
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // promise.all使用规则
+    // 1、参数接收一个promise的Array类型
+    // 2、返回一个promise实例，所有的promise.resolve回调的结果都返回一个数组
+    // 3、如果执行reject回调，promise就会立即抛出错误
+    // 4、promise只有全部成功才算成功，一个错误就失败
+    const p1 = new Promise((resolve, reject) => {
+      resolve('hello')
+    })
+    const p2 = Promise.reject('Like')
+    const p3 = Promise.resolve('OK')
+
+    const all = Promise.all([p1,p2,p3])
+    console.log(all);
+  </script>
+</body>
+</html>

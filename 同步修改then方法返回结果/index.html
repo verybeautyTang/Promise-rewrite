@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./index.js"></script>
+</head>
+
+<body>
+  <script>
+    // let p = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     reject('Fail')
+    //   }, 1000);
+    // })
+    // const res = p.then(value => {
+    //   console.log(value);
+    // }, reason => {
+    //   console.warn(reason);
+    //   return false
+    // })
+    // .then(value =>{
+    //   console.log('object');
+    // })
+    // .catch(e => {
+    //   console.warn('qqq');
+    //   }) 
+    // console.log(res);
+    // const p = Promise.resolve(setTimeout(() => {
+    //   return 'yeal'
+    // }, 1000))
+    // const p2 = Promise.resolve(new Promise((resolve, reject) => {
+    //   resolve('nice')
+    // }))
+    // const p3 = Promise.reject('yeal')
+    // const p4 = Promise.reject(new Promise((resolve, reject) => {
+    //   resolve('nice')
+    // }))
+    // console.log(p);
+    // console.log(p2);
+    // console.log(p3);
+    // console.log(p4);
+    // const p5 = Promise.all([p, p2, p3])
+    // console.log(p5);
+
+    // const p6 = Promise.race([p,p3,p2])
+    // console.log(p6);
+
+    //回調函數異步執行
+    let q = new Promise((resolve, reject) => {
+      resolve('OK')
+      console.log(111);
+    })
+    q.then(v => {
+      // console.log(v);
+      console.log(222);
+    })
+    console.log(333);
+  </script>
+</body>
+
+</html>

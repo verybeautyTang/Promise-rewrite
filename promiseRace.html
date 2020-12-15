@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //promise.race()使用规则
+    // 1、接收一个promise的Array类型并返回一个promise实例
+    // 2、一般执行promise数组里面的第一个执行的数据
+      const p1 = new Promise((resolve, reject) => {
+        // 在这种情况下第一个执行的就是P2
+        setTimeout(() => {
+          resolve('hello')
+        }, 2000);
+        })
+        const p2 = Promise.resolve('Like')
+        const p3 = Promise.resolve('OK')
+
+        const race = Promise.race([p1, p2, p3])
+        console.log(race);
+  </script>
+</body>
+</html>

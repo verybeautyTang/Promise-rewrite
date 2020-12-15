@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>Promise初体验---点击下方按钮抽奖</div>
+  <button id="btn">点击抽奖</button>
+  <script>
+    // 需求
+    /*
+    1、点击抽奖按钮【中奖率为30%】
+    2、1s后返回抽奖结果
+    3、如果中奖则返回中奖，否则则返回不中奖
+    */
+    window.onload = function () {
+      let btn = document.getElementById('btn')
+      // 方法1、直接用函数解决
+      // btn.addEventListener('click',function(){
+      //   setTimeout(() => {
+      //     let data = rate(1,100)
+      //     console.log(data);
+      //     if (data <=30) {
+      //       alert('恭喜您，中奖了')
+      //     } else {
+      //       alert('请再接再厉')
+      //     }
+      //   }, 1000);
+      // })
+
+      function rate(m, n) {
+        return Math.floor(Math.random() * (m - n) + n);
+      }
+      // 方法2、用promise解决
+      btn.addEventListener('click', function () {
+        const p = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            // 从1-100获取一个随机数
+            let data = rate(1, 100)
+            console.log(data);
+            if (data <= 30) {
+              resolve(data) // 将promise改为成功
+            } else {
+              reject(data) // 将promise改为失败
+            }
+          }, 1000);
+        });
+        p.then((value) => {
+          alert('恭喜您，中奖了,您的中奖号码是'+value) // 第一个函数成功的回调
+        }, (reason) => {
+          alert('请再接再厉，您的号码是'+reason) // 第二个参数是失败的回调
+        })
+      })
+    }
+  </script>
+</body>
+
+</html>

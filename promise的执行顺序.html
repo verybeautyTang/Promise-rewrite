@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、如果是同步调用，则先改变状态再去执行回调
+    // 2、 如果是异步调用，则先指定回调，异步调用完成之后再执行
+    // 3、如果要先改变状态，可以在同步状态下或者是回调的等待时间更长
+    const p = new Promise((resolve, reject) => {
+      setInterval(() => {
+        resolve('PK')
+      }, 3000);
+    })
+    p.then(value => {
+      console.log(value);
+    })
+  </script>
+</body>
+</html>

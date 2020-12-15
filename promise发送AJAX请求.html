@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>点击下方按钮发送AJAX请求</div>
+  <button id="send">发送请求</button>
+  <script>
+    window.onload = function () {
+      let send = document.getElementById('send')
+      send.addEventListener('click',function () {
+        // 1、普通函数调用
+        // // 创建ajax请求
+        // const xhr = new XMLHttpRequest()
+        // // 初始化请求
+        // xhr.open('GET','https://api.apiopen.top/getJoke')
+        // // 发送请求
+        // xhr.send()
+        // // 响应处理结果
+        // xhr.onreadystatechange = function () {
+        //   if (xhr.readyState === 4) {
+        //     if (xhr.status>= 200 && xhr.status < 300) {
+        //       console.log(xhr.response);
+        //     } else {
+        //       console.log(xhr.status);
+        //     }
+        //   }
+        // }
+        
+        // 回调函数调用promise
+        const p = new Promise((resolve, reject) => {
+            // 创建ajax请求
+          const xhr = new XMLHttpRequest()
+          // 初始化请求
+          xhr.open('GET', 'https://api.apiopen.top/getJoke')
+          // 发送请求
+          xhr.send()
+          // 响应处理结果
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                resolve(xhr.response);
+              } else {
+                reject(xhr.status);
+              }
+            }
+          }
+        })
+        p.then(value => {
+          console.log(value);
+        },reason => {
+          console.log(reason);
+        })
+      })
+    }
+  </script>
+</body>
+</html>

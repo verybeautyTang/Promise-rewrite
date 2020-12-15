@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="UTF-8">
+    <title>你的世界，由你做主</title>
+    <script type="text/javascript" src="http://101.201.102.86/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="http://101.201.102.86/js/jquery.qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .el-header {
+            background-color: #68B9F2;
+            color: rgb(202, 10, 10);
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-main {
+            background-color: #97CFF7;
+            color: #333;
+            height: 1080px;
+        }
+
+        .describeLeft {
+            float: left;
+            width: 60%;
+        }
+
+        .describeLeft span {
+            color: rgb(236, 15, 15);
+        }
+
+        .describeRight {
+            float: left;
+            width: 40%;
+        }
+
+        .describeRight p {
+            position: relative;
+            top: 10px;
+            left: 20%;
+            color: red;
+        }
+
+        body>.el-container {
+            margin-bottom: 0px;
+        }
+
+        .el-carousel {
+            width: 600px;
+            left: 8%;
+        }
+
+        .el-carousel__item {
+            color: #475669;
+        }
+
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+
+        .boxImg img {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 23px;
+            width: 280px;
+            height: 370px;
+        }
+
+        .payBox {
+            position: relative;
+            left: 30%;
+        }
+    </style>
+</header>
+
+<body>
+    <div id="app">
+        <el-container>
+            <el-header>升职加薪不是梦！但你得给你自己一个机会</el-header>
+            <el-main>
+                <div class="describeLeft">
+                    <ul>
+                        <li>
+                            <i class="el-icon-success" style="font-size: 25px; color: gold"></i>
+                            navicat 作为数据库可视化工具行业中的翘楚，作为一个专业 DBA 你怎么可以没有一个 navicat12 premium呢？
+                        </li>
+                        <li>
+                            <i class="el-icon-wallet" style="font-size: 25px; color: gold"></i>
+                            为什么我们买不起正版呢？因为一年要几百刀, 还无法享受升级！为什么不去某宝买呢？不仅贵，还因为他们时不时会被封号消失
+                        </li>
+                        <li>
+                            <i class="el-icon-warning" style="font-size: 25px; color: gold"></i>
+                            <span>在此郑重声明，本人诚信做生意，旨在为你带来实惠！本补丁绝对有效，无效全额退款（如果骗你全家死绝！）</span>
+                        </li>
+                        <li>
+                            <i class="el-icon-sugar" style="font-size: 25px; color: gold"></i>
+                            福利赠送：购买本补丁<span></span><a href="https://www.789zhao.com/blog/J8LT1YRVGN03.html"
+                                target="_blank">免费赠送（价值 3.6 元）白嫖科学上网教程。</a></span> <a href="http://www.google.com"
+                                target="_blank">google</a>, <a href="http://www.youtube.com" target="_blank">youtube</a>
+                            等外网地址轻松访问
+                            <div class="payBox">
+                                <p class="el-icon-key">梯子注册邀请码：<span>{{kxcode}}</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="el-icon-s-opportunity" style="font-size: 25px; color: gold"></i>
+                            <span>本补丁是通过逆向直接修改了注册弹窗的跳转逻辑，所以保证能永久性的使用！我们有稳定的售后和售前服务，请放心购买</span>
+                        </li>
+                        <li>
+                            <i class="el-icon-money" style="font-size: 25px; color: gold"></i>
+                            本资源费用<span> {{amount}} </span>元，使用支付宝扫码下侧黑色二维码即可。如果需要采用微信，QQ等其他支付方式，请联系客服。
+                            <br />
+                            <div class="payBox">
+                                <p class="el-icon-unlock">解压密码(请惠存)：<span>{{password}}</span></p>
+                                <div id="qrcode" v-if="qrcodeShow">
+                                    <span v-if="noticeShow">如果没有支付码请刷新本页面</span>
+                                </div>
+                            </div>
+                            <br />
+                        </li>
+                        <li>
+                            <i class="el-icon-question" style="font-size: 25px; color: gold"></i>
+                            客服 7:00 ~ 24:00 在线，欢迎各位大佬来扰。客服联系方式：QQ <span class="servicePeople">1129710485</span>
+                        </li>
+                        <li>
+                            <i class="el-icon-service" style="font-size: 25px; color: gold"></i>
+                            <span>重要！支付成功自动返回密码和邀请码，请不要关闭本页面。如有问题及时联系客服：</span>
+                            <el-button type="primary" icon="el-icon-service" size="mini">
+                                <a href="tencent://message/?uin=1129710485" style="text-decoration:none">客服</a>
+                            </el-button>
+                        </li>
+                        <li>
+                            <i class="el-icon-coin" style="font-size: 25px; color: gold"></i>
+                            支付前，扫一扫右侧的红包，有概率获得 <span> 8.8 元</span> 大红包哦。等于帮你赚钱！亲记得消费你的红包哦
+                        </li>
+                        <li>
+                            <i class="el-icon-medal-1" style="font-size: 25px; color: gold"></i>
+                            本补丁适用激活 navicat premium 12, 同时也已经做好汉化插件，方便习惯中文界面的各位大佬。
+                        </li>
+                        <li>
+                            <i class="el-icon-link" style="font-size: 25px; color: gold"></i>
+                            教程博客地址：<el-link type="success" href="https://www.789zhao.com/blog/J83BGHMG6B8L.html"
+                                target="_blank">https://www.789zhao.com/blog/J83BGHMG6B8L.html</el-link>
+                        </li>
+                    </ul>
+                </div>
+                <div class="describeRight">
+                    <div class="boxImg">
+                        <img src="http://101.201.102.86/images/hb.png" alt="" />
+                        <img src="http://101.201.102.86/images/bg.png" alt="" />
+                    </div>
+                    <p style="width: 210px;font-size:medium;">
+                        成功案例展示
+                    </p>
+                    <div style="height: 500px; width: 300px;">
+                        <el-carousel height="350px">
+                            <el-carousel-item v-for="item in items" :key="item">
+                                <img class="element-img" alt="" :src="item">
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
+                </div>
+
+            </el-main>
+        </el-container>
+    </div>
+</body>
+<script src="https://unpkg.zhimg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.zhimg.com/element-ui/lib/index.js"></script>
+<script>
+    let addr = "101.201.102.86"
+    //let addr = "localhost"
+    let picUrl = "images/navicat12"
+    var createWebSocket = (function () {
+        return function (urlValue) {
+            if (window.WebSocket) return new WebSocket(urlValue);
+            if (window.MozWebSocket) return new MozWebSocket(urlValue);
+            return false;
+        }
+    })();
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                // 图片地址数组
+                items: [
+                    `http://${addr}/${picUrl}/0.png`,
+                    `http://${addr}/${picUrl}/1.png`,
+                    `http://${addr}/${picUrl}/2.png`,
+                    `http://${addr}/${picUrl}/3.png`,
+                    `http://${addr}/${picUrl}/5.png`,
+                    `http://${addr}/${picUrl}/6.png`,
+                    `http://${addr}/${picUrl}/7.png`,
+                    `http://${addr}/${picUrl}/8.png`,
+                ],
+                // 图片父容器高度
+                bannerHeight: 1000,
+                // 浏览器宽度
+                screenWidth: 0,
+                socket: null,
+                amount: 0,
+                noticeShow: true,
+                password: '******',
+                kxcode: '******',
+                qrcodeShow: true,
+            }
+        },
+        mounted: function () {
+            this.init()
+        },
+        methods: {
+            init: function () {
+                let tradeNo = new Date().getTime()
+                this.socket = createWebSocket(`ws://${addr}?tradeNo=${tradeNo}&ide=navicat12`)
+                this.socket.onopen = () => {
+                    $(document).ready(() => {
+                        //$('#qrcode').qrcode("https://www.baidu.com");
+                    })
+                }
+                this.socket.onmessage = (serverPush) => {
+                    let data = JSON.parse(serverPush.data)
+                    console.log(data);
+                    console.log(data.unzip);
+                    if (data.code == 0) {
+                        if (data.type == 1) {
+                            $('#qrcode').qrcode(data.qrUrl);
+                            this.noticeShow = false;
+                            this.amount = data.amount;
+                        } else if (data.type == 2) {
+                            this.password = data.unzip;
+                            this.kxcode = data.gift;
+                            this.qrcodeShow = false;
+                        }
+                    }
+                }
+
+                this.socket.onclose = () => {
+                    console.log("connection has disconnected")
+                }
+
+                this.socket.onerror = () => {
+                    console.error("unknown error")
+                }
+            }
+        }
+    })
+</script>
+
+</html>
